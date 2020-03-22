@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 Route::prefix('v1')->group(function() {
     
     Route::post('login', 'Api\AuthController@login');
+    Route::get('barangays', 'Api\BarangayController@showAllBrgy');
+    Route::get('puis', 'Api\PuiController@showAllPui');
+    Route::get('pums', 'Api\PumController@showAllPum');
+    Route::get('covid-cases', 'Api\LaCovidCaseController@showAllCovidCases');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::post('logout', 'Api\AuthController@logout');
@@ -29,24 +33,19 @@ Route::prefix('v1')->group(function() {
         Route::delete('roles', 'Api\RoleController@deleteRole');
         Route::get('roles/{role_id}', 'Api\RoleController@showRole');
         Route::put('roles/{role_id}', 'Api\RoleController@updateRole');
-        Route::get('barangays', 'Api\BarangayController@showAllBrgy');
         Route::post('barangays', 'Api\BarangayController@createBrgy');
         Route::delete('barangays', 'Api\BarangayController@deleteBrgy');
-        Route::get('barangays/{barangay_id}', 'Api\BarangayController@showBrgy');
         Route::put('barangays/{barangay_id}', 'Api\BarangayController@updateBrgy');
-        Route::get('puis', 'Api\PuiController@showAllPui');
         Route::post('puis', 'Api\PuiController@createPui');
         Route::delete('puis', 'Api\PuiController@deletePui');
         Route::get('puis/{pui_id}', 'Api\PuiController@showPui');
         Route::put('puis/{pui_id}', 'Api\PuiController@updatePui');
         Route::get('puis/barangays/{barangay_id}', 'Api\PuiController@showAllPuiByBrgy');
-        Route::get('pums', 'Api\PumController@showAllPum');
         Route::post('pums', 'Api\PumController@createPum');
         Route::delete('pums', 'Api\PumController@deletePum');
         Route::get('pums/{pum_id}', 'Api\PumController@showPum');
         Route::put('pums/{pum_id}', 'Api\PumController@updatePum');
         Route::get('pums/barangays/{barangay_id}', 'Api\PumController@showAllPumByBrgy');
-        Route::get('covid-cases', 'Api\LaCovidCaseController@showAllCovidCases');
         Route::post('covid-cases', 'Api\LaCovidCaseController@createCovidCase');
         Route::delete('covid-cases', 'Api\LaCovidCaseController@deleteCovidCase');
         Route::get('covid-cases/{covid_case_id}', 'Api\LaCovidCaseController@showCovidCase');
